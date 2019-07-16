@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+
+<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+</head>
+<body>
+<table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>歌曲链接</th>
+                <th>总热度</th>
+                <th>查看评论</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>歌曲链接</th>
+                <th>总热度</th>
+                <th>查看评论</th>
+            </tr>
+        </tfoot>
+    </table>
+
+<script>
+
+$(document).ready(function() {
+    $('#example').DataTable( {
+        "ajax": "/getComments/test",
+        "columns": [
+            { "data": "songurl",
+              render:function (data, type,row,meta) {
+               return "<a href='" + data + "' target='_blank'>" + data + "</a>";
+              }
+            },
+            { "data": "total" },
+            { "data": "songuuid",
+              render:function (data,type,row,meta) {
+                 return "<a href='/getComments/commenthtml?uuid="+data+"' target='_blank'>查看精选评论</a>"
+              }
+            },
+        ]
+    } );
+} );
+</script>
+</body>
+</html>

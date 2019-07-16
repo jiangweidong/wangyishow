@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+
+<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+</head>
+<body>
+<table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>评论内容</th>
+                <th>头像</th>
+                <th>点赞数</th>
+                <th>昵称</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>评论内容</th>
+                <th>头像</th>
+                <th>点赞数</th>
+                <th>昵称</th>
+            </tr>
+        </tfoot>
+    </table>
+
+
+</body>
+<script>
+
+$(document).ready(function() {
+    $('#example').DataTable( {
+        "ajax":"/getComments/getCommentByUUID?uuid={{ uuid }}",
+        "columns": [
+            { "data": "content"},
+            { "data": "avatarUrl",
+            render:function (data,type,row,meta) {
+                return "<img height=60px width=60px src="+data+" />"
+            }
+            },
+            { "data": "likeCount"},
+            { "data":"nickname"}
+        ]
+    } );
+}
+
+);
+
+</script>
+</html>
