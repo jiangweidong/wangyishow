@@ -10,15 +10,7 @@ from DBUtils.PooledDB import PooledDB, SharedDBConnection
 from DBUtils.PersistentDB import PersistentDB, PersistentDBError, NotSupportedError
 namespace = uuid.NAMESPACE_URL
 
-config = {
-    'host':'47.106.91.135',
-    'port':3306,
-    'db':'wangyiyun',
-    'user':'root',
-    'passwd':'jiangweidong',
-    'charset':'utf8mb4',
-    'use_unicode':True
-}
+
 
 def get_db_pool(is_mult_thread):
     if is_mult_thread:
